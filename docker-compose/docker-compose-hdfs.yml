@@ -5,7 +5,7 @@ services:
     image: xiaobailong/hadoop_in_docker_single:3.0.3
     hostname: namenode
     networks:
-      - ones_cloud
+      - xiaobailong_cloud
     expose:
       - 50070
       - 50090
@@ -27,7 +27,7 @@ services:
     ]
     hostname: datanode0
     networks:
-      - ones_cloud
+      - xiaobailong_cloud
     expose:
       - 50010
       - 50020
@@ -46,7 +46,7 @@ services:
     ]
     hostname: datanode1
     networks:
-      - ones_cloud
+      - xiaobailong_cloud
     expose:
       - 50010
       - 50020
@@ -55,6 +55,6 @@ services:
       - /data/docker/data/hadoop/dfs/datanode/data2:/data/hadoop/dfs/datanode
 
 networks:
-  ones_cloud:
+  xiaobailong_cloud:
     # Use a custom driver
     driver: bridge

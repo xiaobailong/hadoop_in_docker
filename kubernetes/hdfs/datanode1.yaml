@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: datanode1
-  namespace: ones
+  namespace: xiaobailong
 spec:
   replicas: 1
   template:
@@ -40,7 +40,7 @@ metadata:
     task: hdfs
     k8s-app: datanode1
   name: hdfs-dn1
-  namespace: ones
+  namespace: xiaobailong
 spec:
   ports:
     - name: hdfs-9864

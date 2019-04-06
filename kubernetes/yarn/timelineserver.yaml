@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: timelineserver
-  namespace: ones
+  namespace: xiaobailong
 spec:
   replicas: 1
   template:
@@ -35,7 +35,7 @@ metadata:
     task: yarn
     k8s-app: timelineserver
   name: yarn-ts
-  namespace: ones
+  namespace: xiaobailong
 spec:
   ports:
     - name: yarn-8188

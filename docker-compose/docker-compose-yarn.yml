@@ -14,7 +14,7 @@ services:
           ]
     hostname: resourcemanager
     networks:
-      - ones_cloud
+      - xiaobailong_cloud
     expose:
       - 8030
       - 8031
@@ -34,7 +34,7 @@ services:
           ]
     hostname: timelineserver
     networks:
-      - ones_cloud
+      - xiaobailong_cloud
     ports:
       - 8188:8188
   
@@ -52,7 +52,7 @@ services:
         ]
     hostname: nodemanager0
     networks:
-      - ones_cloud
+      - xiaobailong_cloud
     expose:
       - 8030
       - 8031
@@ -76,7 +76,7 @@ services:
     ]
     hostname: nodemanager1
     networks:
-      - ones_cloud
+      - xiaobailong_cloud
     expose:
       - 8030
       - 8031
@@ -87,6 +87,6 @@ services:
       - 8088
 
 networks:
-  ones_cloud:
+  xiaobailong_cloud:
     # Use a custom driver
     driver: bridge
