@@ -3,7 +3,7 @@ version: '3'
 services:
   namenode:
     image: xiaobailong/hadoop_in_docker:3.0.3
-    hostname: namenode
+    hostname: namenode.hdfs-nm.xiaobailong.svc.cluster.local
     networks:
       - ones_cloud
     expose:

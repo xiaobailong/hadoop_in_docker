@@ -40,5 +40,5 @@ RUN mkdir -p /scripts && chmod 777 /var/log/yum.log
 COPY ./scripts/* /scripts/
 RUN chmod -R a+x /scripts
 
-CMD bash /scripts/start-hadoop.sh && tail -f /var/log/yum.log
+CMD /scripts/start-hadoop.sh && tail -f /var/log/yum.log
 #EXPOSE 22 8030 8031 8032 8033 8040 8042 8088 8090 10033 10020 19888 19890 50010 50020 50070 50075 50090 49707
