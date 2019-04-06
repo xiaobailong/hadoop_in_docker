@@ -9,7 +9,7 @@
 
 ### 启动
 
-进入docker-compose目录使用以下命令启动集群
+进入docker-compose目录,使用以下命令启动集群
 
 `启动hdfs：
 
