@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # java home
 export JAVA_HOME="/usr/lib/jvm/default-jvm"
 export HADOOP_CONF_DIR="${HADOOP_HOME}/etc/hadoop"
