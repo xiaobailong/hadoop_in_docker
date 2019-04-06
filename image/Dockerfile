@@ -5,7 +5,6 @@ ENV HADOOP_VERSION 3.0.3
 ENV CLUSTER_ID CID-c162a031-783e-4db8-823f-ab1ef43dbae8
 
 # tools
-RUN yum install -y wget && wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo && yum makecache
 RUN yum install -y net-tools iputils-ping iproute2 curl vim less
 
 #java env
@@ -29,7 +28,7 @@ ENV PATH $PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
 # export JAVA_HOME=/usr/lib/jvm/default-jvm
 
 # config hadoop
-COPY ./conf/* $HADOOP_HOME/etc/hadoop/
+COPY conf/* $HADOOP_HOME/etc/hadoop/
 
 # start hadoop
 RUN mkdir /data/hadoop/dfs/namenode/{data,cache} -p && chmod -R 700 /data/hadoop/dfs/namenode && \
