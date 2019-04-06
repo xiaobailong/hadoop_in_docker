@@ -1,0 +1,46 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: resourcemanager
+  namespace: ones
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        task: yarn
+        k8s-app: resourcemanager
+    spec:
+      containers:
+        - name: resourcemanager
+          image: xiaobailong/hadoop_in_docker:3.0.3
+          imagePullPolicy: Always
+          command: ["yarn"]
+          args: ["resourcemanager","-Dfs.defaultFS=hdfs://namenode.hdfs-nm.xiaobailong.svc.cluster.local:9000","-Dyarn.nodemanager.aux-services=mapreduce_shuffle","-Ddfs.namenode.datanode.registration.ip-hostname-check=false","-Ddfs.permissions.enabled=false -Dmapreduce.framework.name=yarn","-Dyarn.resourcemanager.webapp.address=resourcemanager.yarn-rm.xiaobailong.svc.cluster.local:8088"]
+          ports:
+            - containerPort: 8088
+              protocol: TCP
+            - containerPort: 8031
+              protocol: TCP
+      hostname: resourcemanager
+      subdomain: yarn-rm
+      imagePullSecrets:
+        - name: regsecret
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    task: yarn
+    k8s-app: resourcemanager
+  name: yarn-rm
+  namespace: ones
+spec:
+  ports:
+    - name: yarn-8088
+      port: 8088
+      targetPort: 8088
+  type: NodePort
+  selector:
+    k8s-app: resourcemanager

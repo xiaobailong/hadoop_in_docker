@@ -1,0 +1,266 @@
+<?xml version="1.0"?>
+<configuration>
+    <property>
+        <name>yarn.nodemanager.aux-services</name>
+        <value>mapreduce_shuffle</value>
+    </property>
+    <property>
+        <name>yarn.nodemanager.aux-services.mapreduce_shuffle.class</name>
+        <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+    </property>
+    <property>
+        <name>yarn.resourcemanager.hostname</name>
+        <value>resourcemanager.yarn-rm.xiaobailong.svc.cluster.local</value>
+    </property>
+    <property>
+        <name>yarn.resourcemanager.address</name>
+        <value>resourcemanager.yarn-rm.xiaobailong.svc.cluster.local:8032</value>
+    </property>
+    <property>
+        <name>yarn.resourcemanager.admin.address</name>
+        <value>resourcemanager.yarn-rm.xiaobailong.svc.cluster.local:8033</value>
+    </property>
+    <property>
+        <name>yarn.resourcemanager.scheduler.address</name>
+        <value>resourcemanager.yarn-rm.xiaobailong.svc.cluster.local:8030</value>
+    </property>
+    <property>
+        <name>yarn.resourcemanager.resource-tracker.address</name>
+        <value>resourcemanager.yarn-rm.xiaobailong.svc.cluster.local:8031</value>
+    </property>
+    <property>
+        <name>yarn.resourcemanager.webapp.address</name>
+        <value>resourcemanager.yarn-rm.xiaobailong.svc.cluster.local:8088</value>
+    </property>
+    <property>
+        <name>yarn.resourcemanager.webapp.https.address</name>
+        <value>resourcemanager.yarn-rm.xiaobailong.svc.cluster.local:8090</value>
+    </property>
+
+    <property>
+      <description>Indicate to clients whether Timeline service is enabled or not.
+      If enabled, the TimelineClient library used by end-users will post entities
+      and events to the Timeline server.</description>
+      <name>yarn.timeline-service.enabled</name>
+      <value>true</value>
+    </property>
+    <property>
+      <description>The setting that controls whether yarn system metrics is
+      published on the timeline server or not by RM.</description>
+      <name>yarn.system-metrics-publisher.enabled</name>
+      <value>true</value>
+    </property>
+    <property>
+      <description>Indicate to clients whether to query generic application
+      data from timeline history-service or not. If not enabled then application
+      data is queried only from Resource Manager.</description>
+      <name>yarn.timeline-service.generic-application-history.enabled</name>
+      <value>true</value>
+    </property>
+
+    <property>
+        <name>yarn.resourcemanager.client.thread-count</name>
+        <value>500</value>
+    </property>
+    <property>
+        <name>yarn.resourcemanager.scheduler.client.thread-count</name>
+        <value>500</value>
+    </property>
+    <property>
+        <name>yarn.resourcemanager.admin.client.thread-count</name>
+        <value>1</value>
+    </property>
+
+    <!--配置内存资源分配策略-->
+    <property>
+        <name>yarn.scheduler.minimum-allocation-mb</name>
+        <value>128</value>
+    </property>
+    <property>
+        <name>yarn.scheduler.increment-allocation-mb</name>
+        <value>128</value>
+    </property>
+    <property>
+        <name>yarn.scheduler.maximum-allocation-mb</name>
+        <value>2048</value>
+    </property>
+    <property>
+      <name>yarn.nodemanager.vmem-check-enabled</name>
+      <value>false</value>
+      <description>Whether virtual memory limits will be enforced for containers</description>
+    </property>
+    <property>
+      <name>yarn.nodemanager.vmem-pmem-ratio</name>
+      <value>4</value>
+      <description>Ratio between virtual memory to physical memory when setting memory limits for containers</description>
+    </property>
+    <!--配置内存资源分配策略-->
+
+    <!--配置CPU资源分配策略-->
+    <property>
+        <name>yarn.scheduler.minimum-allocation-vcores</name>
+        <value>1</value>
+    </property>
+    <property>
+        <name>yarn.scheduler.increment-allocation-vcores</name>
+        <value>1</value>
+    </property>
+    <property>
+        <name>yarn.scheduler.maximum-allocation-vcores</name>
+        <value>8</value>
+    </property>
+    <!--配置CPU资源分配策略-->
+
+    <property>
+        <name>yarn.resourcemanager.amliveliness-monitor.interval-ms</name>
+        <value>1000</value>
+    </property>
+    <property>
+        <name>yarn.am.liveness-monitor.expiry-interval-ms</name>
+        <value>600000</value>
+    </property>
+    <property>
+        <name>yarn.resourcemanager.am.max-attempts</name>
+        <value>2</value>
+    </property>
+    <property>
+        <name>yarn.resourcemanager.container.liveness-monitor.interval-ms</name>
+        <value>600000</value>
+    </property>
+    <property>
+        <name>yarn.resourcemanager.nm.liveness-monitor.interval-ms</name>
+        <value>10000</value>
+    </property>
+    <property>
+        <name>yarn.nm.liveness-monitor.expiry-interval-ms</name>
+        <value>600000</value>
+    </property>
+    <property>
+        <name>yarn.resourcemanager.resource-tracker.client.thread-count</name>
+        <value>50</value>
+    </property>
+    <property>
+        <name>yarn.resourcemanager.scheduler.class</name>
+        <value>org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FairScheduler</value>
+    </property>
+    <property>
+        <name>yarn.resourcemanager.max-completed-applications</name>
+        <value>10000</value>
+    </property>
+    <property>
+        <name>yarn.nodemanager.remote-app-log-dir</name>
+        <value>/data/yarn/logs</value>
+    </property>
+    <property>
+        <name>yarn.nodemanager.remote-app-log-dir-suffix</name>
+        <value>logs</value>
+    </property>
+
+    <!--启用历史记录服务-->
+    <property>
+        <description></description>
+        <name>yarn.timeline-service.hostname</name>
+        <value>timelineserver.yarn-ts.xiaobailong.svc.cluster.local</value>
+    </property>
+    <property>
+        <description>Address for the Timeline server to start the RPC server.</description>
+        <name>yarn.timeline-service.address</name>
+        <value>${yarn.timeline-service.hostname}:10200</value>
+    </property>
+    <property>
+        <description>The http address of the Timeline service web application.</description>
+        <name>yarn.timeline-service.webapp.address</name>
+        <value>${yarn.timeline-service.hostname}:8188</value>
+    </property>
+    <property>
+        <description>The https address of the Timeline service web application.</description>
+        <name>yarn.timeline-service.webapp.https.address</name>
+        <value>${yarn.timeline-service.hostname}:8190</value>
+    </property>
+    <property>
+        <description>Handler thread count to serve the client RPC requests.</description>
+        <name>yarn.timeline-service.handler-thread-count</name>
+        <value>10</value>
+    </property>
+    <property>
+        <description>Enables cross-origin support (CORS) for web services where
+            cross-origin web response headers are needed. For example, javascript making
+            a web services request to the timeline server.</description>
+        <name>yarn.timeline-service.http-cross-origin.enabled</name>
+        <value>false</value>
+    </property>
+    <property>
+        <description>Comma separated list of origins that are allowed for web
+            services needing cross-origin (CORS) support. Wildcards (*) and patterns
+            allowed</description>
+        <name>yarn.timeline-service.http-cross-origin.allowed-origins</name>
+        <value>*</value>
+    </property>
+    <property>
+        <description>Comma separated list of methods that are allowed for web
+            services needing cross-origin (CORS) support.</description>
+        <name>yarn.timeline-service.http-cross-origin.allowed-methods</name>
+        <value>GET,POST,HEAD</value>
+    </property>
+    <property>
+        <description>Comma separated list of headers that are allowed for web
+            services needing cross-origin (CORS) support.</description>
+        <name>yarn.timeline-service.http-cross-origin.allowed-headers</name>
+        <value>X-Requested-With,Content-Type,Accept,Origin</value>
+    </property>
+    <property>
+        <description>The number of seconds a pre-flighted request can be cached
+            for web services needing cross-origin (CORS) support.</description>
+        <name>yarn.timeline-service.http-cross-origin.max-age</name>
+        <value>1800</value>
+    </property>
+    <property>
+        <description>Indicate to ResourceManager as well as clients whether
+            history-service is enabled or not. If enabled, ResourceManager starts
+            recording historical data that Timelien service can consume. Similarly,
+            clients can redirect to the history service when applications
+            finish if this is enabled.</description>
+        <name>yarn.timeline-service.generic-application-history.enabled</name>
+        <value>true</value>
+    </property>
+    <property>
+        <description>Store class name for history store, defaulting to file system
+            store</description>
+        <name>yarn.timeline-service.generic-application-history.store-class</name>
+        <value>org.apache.hadoop.yarn.server.applicationhistoryservice.FileSystemApplicationHistoryStore</value>
+    </property>
+    <property>
+        <description>Indicate to clients whether Timeline service is enabled or not.
+            If enabled, the TimelineClient library used by end-users will post entities
+            and events to the Timeline server.</description>
+        <name>yarn.timeline-service.enabled</name>
+        <value>true</value>
+    </property>
+    <property>
+        <description>Store class name for timeline store.</description>
+        <name>yarn.timeline-service.store-class</name>
+        <value>org.apache.hadoop.yarn.server.timeline.LeveldbTimelineStore</value>
+    </property>
+    <property>
+        <description>Enable age off of timeline store data.</description>
+        <name>yarn.timeline-service.ttl-enable</name>
+        <value>true</value>
+    </property>
+    <property>
+        <description>Time to live for timeline store data in milliseconds.</description>
+        <name>yarn.timeline-service.ttl-ms</name>
+        <value>6048000000</value>
+    </property>
+    <!--启用历史记录服务-->
+
+    <!--启用日志聚合功能-->
+    <property>
+        <name>yarn.log-aggregation-enable</name>
+        <value>true</value>
+    </property>
+    <property>
+        <name>yarn.log-aggregation.retain-seconds</name>
+        <value>604800</value>
+    </property>
+    <!--启用日志聚合功能-->
+</configuration>

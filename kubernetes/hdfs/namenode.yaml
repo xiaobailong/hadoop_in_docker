@@ -1,0 +1,51 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: namenode
+  namespace: ones
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        task: hdfs
+        k8s-app: namenode
+    spec:
+      containers:
+        - name: namenode
+          image: xiaobailong/hadoop_in_docker:3.0.3
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 50070
+              protocol: TCP
+            - containerPort: 9000
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /data/hadoop/dfs/namenode
+              name: namenode-data
+      hostname: namenode
+      subdomain: hdfs-nm
+      imagePullSecrets:
+        - name: regsecret
+      volumes:
+        - name: namenode-data
+          hostPath:
+            path: /mnt/nfs/hdfs/namenode
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    task: hdfs
+    k8s-app: namenode
+  name: hdfs-nm
+  namespace: ones
+spec:
+  ports:
+    - name: hdfs-web
+      port: 50070
+      targetPort: 50070
+  type: NodePort
+  selector:
+    k8s-app: namenode

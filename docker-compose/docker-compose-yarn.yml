@@ -1,0 +1,92 @@
+version: '3'
+  
+services:
+  resourcemanager:
+    image: xiaobailong/hadoop_in_docker:3.0.3
+    command: [
+        "yarn",
+        "resourcemanager",
+        "-Dfs.defaultFS=hdfs://namenode.hdfs-nm.xiaobailong.svc.cluster.local:9000",
+        "-Dyarn.nodemanager.aux-services=mapreduce_shuffle",
+        "-Ddfs.namenode.datanode.registration.ip-hostname-check=false",
+        "-Ddfs.permissions.enabled=false -Dmapreduce.framework.name=yarn",
+        "-Dyarn.resourcemanager.webapp.address=0.0.0.0:8088"
+          ]
+    hostname: resourcemanager.yarn-rm.xiaobailong.svc.cluster.local
+    networks:
+      - ones_cloud
+    expose:
+      - 8030
+      - 8031
+      - 8032
+      - 8033
+      - 8040
+      - 8042
+      - 8088
+    ports:
+      - 8088:8088
+      
+  timelineserver:
+    image: xiaobailong/hadoop_in_docker:3.0.3
+    command: [
+        "yarn",
+        "timelineserver"
+          ]
+    hostname: timelineserver
+    networks:
+      - ones_cloud
+    ports:
+      - 8188:8188
+  
+  nodemanager0:
+    image: xiaobailong/hadoop_in_docker:3.0.3
+    command: [
+        "yarn",
+        "nodemanager",
+        "-Dyarn.resourcemanager.hostname=resourcemanager.yarn-rm.xiaobailong.svc.cluster.local",
+        "-Dyarn.nodemanager.resource.memory-mb=4096",
+        "-Dyarn.nodemanager.aux-services=mapreduce_shuffle",
+        "-Ddfs.namenode.datanode.registration.ip-hostname-check=false",
+        "-Dmapreduce.framework.name=yarn",
+        "-Ddfs.permissions.enabled=false"
+        ]
+    hostname: nodemanager0
+    networks:
+      - ones_cloud
+    expose:
+      - 8030
+      - 8031
+      - 8032
+      - 8033
+      - 8040
+      - 8042
+      - 8088
+
+  nodemanager1:
+    image: xiaobailong/hadoop_in_docker:3.0.3
+    command: [
+      "yarn",
+      "nodemanager",
+      "-Dyarn.resourcemanager.hostname=resourcemanager.yarn-rm.xiaobailong.svc.cluster.local",
+      "-Dyarn.nodemanager.resource.memory-mb=4096",
+      "-Dyarn.nodemanager.aux-services=mapreduce_shuffle",
+      "-Ddfs.namenode.datanode.registration.ip-hostname-check=false",
+      "-Dmapreduce.framework.name=yarn",
+      "-Ddfs.permissions.enabled=false"
+    ]
+    hostname: nodemanager1
+    networks:
+      - ones_cloud
+    expose:
+      - 8030
+      - 8031
+      - 8032
+      - 8033
+      - 8040
+      - 8042
+      - 8088
+
+networks:
+  ones_cloud:
+    # Use a custom driver
+    driver: bridge

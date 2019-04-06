@@ -1,0 +1,48 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: timelineserver
+  namespace: ones
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        task: yarn
+        k8s-app: timelineserver
+    spec:
+      containers:
+        - name: timelineserver
+          image: xiaobailong/hadoop_in_docker:3.0.3
+          imagePullPolicy: Always
+          command: ["yarn"]
+          args: ["timelineserver"]
+          ports:
+            - containerPort: 8188
+              protocol: TCP
+            - containerPort: 10200
+              protocol: TCP
+            - containerPort: 8190
+              protocol: TCP
+      hostname: timelineserver
+      subdomain: yarn-ts
+      imagePullSecrets:
+        - name: regsecret
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    task: yarn
+    k8s-app: timelineserver
+  name: yarn-ts
+  namespace: ones
+spec:
+  ports:
+    - name: yarn-8188
+      port: 8188
+      targetPort: 8188
+  type: NodePort
+  selector:
+    k8s-app: timelineserver

@@ -1,0 +1,50 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nodemanager0
+  namespace: ones
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        task: yarn
+        k8s-app: nodemanager0
+    spec:
+      containers:
+        - name: nodemanager0
+          image: xiaobailong/hadoop_in_docker:3.0.3
+          imagePullPolicy: Always
+          command: ["yarn"]
+          args: ["nodemanager",
+                 "-Dyarn.resourcemanager.hostname=resourcemanager.yarn-rm.xiaobailong.svc.cluster.local",
+                 "-Dyarn.nodemanager.resource.memory-mb=4096",
+                 "-Dyarn.nodemanager.aux-services=mapreduce_shuffle",
+                 "-Ddfs.namenode.datanode.registration.ip-hostname-check=false",
+                 "-Dmapreduce.framework.name=yarn",
+                 "-Ddfs.permissions.enabled=false"]
+          ports:
+            - containerPort: 8042
+              protocol: TCP
+      hostname: nodemanager0
+      subdomain: yarn-nm0
+      imagePullSecrets:
+        - name: regsecret
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    task: yarn
+    k8s-app: nodemanager0
+  name: yarn-nm0
+  namespace: ones
+spec:
+  ports:
+    - name: yarn-8042
+      port: 8042
+      targetPort: 8042
+  type: ClusterIP
+  selector:
+    k8s-app: nodemanager0
