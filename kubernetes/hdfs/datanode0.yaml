@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: datanode0
-          image: xiaobailong/hadoop_in_docker:3.0.3
+          image: xiaobailong/hadoop_in_docker_k8s:3.0.3
           imagePullPolicy: Always
           command: ["hdfs"]
           args: ["datanode","-fs", "hdfs://namenode.hdfs-nm.xiaobailong.svc.cluster.local:9000","-Ddfs.datanode.data.dir=/data/hadoop/dfs/datanode","-Ddfs.permissions.enabled=false"]
@@ -27,8 +27,6 @@ spec:
               name: datanode0-data
       hostname: datanode0
       subdomain: hdfs-dn0
-      imagePullSecrets:
-        - name: regsecret
       volumes:
         - name: datanode0-data
           hostPath:

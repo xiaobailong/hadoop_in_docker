@@ -2,17 +2,17 @@ version: '3'
   
 services:
   resourcemanager:
-    image: xiaobailong/hadoop_in_docker:3.0.3
+    image: xiaobailong/hadoop_in_docker_single:3.0.3
     command: [
         "yarn",
         "resourcemanager",
-        "-Dfs.defaultFS=hdfs://namenode.hdfs-nm.xiaobailong.svc.cluster.local:9000",
+        "-Dfs.defaultFS=hdfs://namenode:9000",
         "-Dyarn.nodemanager.aux-services=mapreduce_shuffle",
         "-Ddfs.namenode.datanode.registration.ip-hostname-check=false",
         "-Ddfs.permissions.enabled=false -Dmapreduce.framework.name=yarn",
         "-Dyarn.resourcemanager.webapp.address=0.0.0.0:8088"
           ]
-    hostname: resourcemanager.yarn-rm.xiaobailong.svc.cluster.local
+    hostname: resourcemanager
     networks:
       - ones_cloud
     expose:
@@ -27,7 +27,7 @@ services:
       - 8088:8088
       
   timelineserver:
-    image: xiaobailong/hadoop_in_docker:3.0.3
+    image: xiaobailong/hadoop_in_docker_single:3.0.3
     command: [
         "yarn",
         "timelineserver"
@@ -39,11 +39,11 @@ services:
       - 8188:8188
   
   nodemanager0:
-    image: xiaobailong/hadoop_in_docker:3.0.3
+    image: xiaobailong/hadoop_in_docker_single:3.0.3
     command: [
         "yarn",
         "nodemanager",
-        "-Dyarn.resourcemanager.hostname=resourcemanager.yarn-rm.xiaobailong.svc.cluster.local",
+        "-Dyarn.resourcemanager.hostname=resourcemanager",
         "-Dyarn.nodemanager.resource.memory-mb=4096",
         "-Dyarn.nodemanager.aux-services=mapreduce_shuffle",
         "-Ddfs.namenode.datanode.registration.ip-hostname-check=false",
@@ -63,11 +63,11 @@ services:
       - 8088
 
   nodemanager1:
-    image: xiaobailong/hadoop_in_docker:3.0.3
+    image: xiaobailong/hadoop_in_docker_single:3.0.3
     command: [
       "yarn",
       "nodemanager",
-      "-Dyarn.resourcemanager.hostname=resourcemanager.yarn-rm.xiaobailong.svc.cluster.local",
+      "-Dyarn.resourcemanager.hostname=resourcemanager",
       "-Dyarn.nodemanager.resource.memory-mb=4096",
       "-Dyarn.nodemanager.aux-services=mapreduce_shuffle",
       "-Ddfs.namenode.datanode.registration.ip-hostname-check=false",

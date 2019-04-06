@@ -2,7 +2,7 @@ version: '3'
 
 services:
   namenode:
-    image: xiaobailong/hadoop_in_docker:3.0.3
+    image: xiaobailong/hadoop_in_docker_single:3.0.3
     hostname: namenode
     networks:
       - ones_cloud
@@ -16,16 +16,16 @@ services:
     volumes:
       - /data/docker/data/hadoop/dfs/namenode:/data/hadoop/dfs/namenode
 
-  datanode1:
-    image: xiaobailong/hadoop_in_docker:3.0.3
+  datanode0:
+    image: xiaobailong/hadoop_in_docker_single:3.0.3
     command: [
       "hdfs",
       "datanode",
-      "-fs", "hdfs://namenode.hdfs-nm.xiaobailong.svc.cluster.local:9000",
+      "-fs", "hdfs://namenode:9000",
       "-Ddfs.datanode.data.dir=/data/hadoop/dfs/datanode",
       "-Ddfs.permissions.enabled=false"
     ]
-    hostname: datanode1
+    hostname: datanode0
     networks:
       - ones_cloud
     expose:
@@ -35,16 +35,16 @@ services:
     volumes:
       - /data/docker/data/hadoop/dfs/datanode/data1:/data/hadoop/dfs/datanode
 
-  datanode2:
-    image: xiaobailong/hadoop_in_docker:3.0.3
+  datanode1:
+    image: xiaobailong/hadoop_in_docker_single:3.0.3
     command: [
       "hdfs",
       "datanode",
-      "-fs", "hdfs://namenode.hdfs-nm.xiaobailong.svc.cluster.local:9000",
+      "-fs", "hdfs://namenode:9000",
       "-Ddfs.datanode.data.dir=/data/hadoop/dfs/datanode",
       "-Ddfs.permissions.enabled=false"
     ]
-    hostname: datanode2
+    hostname: datanode1
     networks:
       - ones_cloud
     expose:

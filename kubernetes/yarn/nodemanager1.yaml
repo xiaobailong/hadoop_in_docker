@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: nodemanager1
-          image: xiaobailong/hadoop_in_docker:3.0.3
+          image: xiaobailong/hadoop_in_docker_k8s:3.0.3
           imagePullPolicy: Always
           command: ["yarn"]
           args: ["nodemanager",
@@ -28,8 +28,6 @@ spec:
               protocol: TCP
       hostname: nodemanager1
       subdomain: yarn-nm1
-      imagePullSecrets:
-        - name: regsecret
 
 ---
 apiVersion: v1
