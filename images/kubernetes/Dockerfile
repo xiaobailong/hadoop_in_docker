@@ -1,4 +1,4 @@
-FROM xiaobailong/hadoop_in_docker:base.3.0.3
+FROM xiaobailong/hadoop_in_docker_base:3.0.3
 
 #设置时间
 ENV TZ=Asia/Shanghai
