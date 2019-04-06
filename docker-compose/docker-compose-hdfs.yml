@@ -2,7 +2,7 @@ version: '3'
 
 services:
   namenode:
-    image: xiaobailong/hadoop_in_docker:docker-compose.3.0.3
+    image: xiaobailong/hadoop_in_docker_single:3.0.3
     hostname: namenode
     networks:
       - ones_cloud
@@ -17,7 +17,7 @@ services:
       - /data/docker/data/hadoop/dfs/namenode:/data/hadoop/dfs/namenode
 
   datanode0:
-    image: xiaobailong/hadoop_in_docker:docker-compose.3.0.3
+    image: xiaobailong/hadoop_in_docker_single:3.0.3
     command: [
       "hdfs",
       "datanode",
@@ -36,7 +36,7 @@ services:
       - /data/docker/data/hadoop/dfs/datanode/data1:/data/hadoop/dfs/datanode
 
   datanode1:
-    image: xiaobailong/hadoop_in_docker:docker-compose.3.0.3
+    image: xiaobailong/hadoop_in_docker_single:3.0.3
     command: [
       "hdfs",
       "datanode",

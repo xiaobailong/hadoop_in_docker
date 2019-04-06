@@ -2,7 +2,7 @@ version: '3'
   
 services:
   resourcemanager:
-    image: xiaobailong/hadoop_in_docker:docker-compose.3.0.3
+    image: xiaobailong/hadoop_in_docker_single:3.0.3
     command: [
         "yarn",
         "resourcemanager",
@@ -27,7 +27,7 @@ services:
       - 8088:8088
       
   timelineserver:
-    image: xiaobailong/hadoop_in_docker:docker-compose.3.0.3
+    image: xiaobailong/hadoop_in_docker_single:3.0.3
     command: [
         "yarn",
         "timelineserver"
@@ -39,7 +39,7 @@ services:
       - 8188:8188
   
   nodemanager0:
-    image: xiaobailong/hadoop_in_docker:docker-compose.3.0.3
+    image: xiaobailong/hadoop_in_docker_single:3.0.3
     command: [
         "yarn",
         "nodemanager",
@@ -63,7 +63,7 @@ services:
       - 8088
 
   nodemanager1:
-    image: xiaobailong/hadoop_in_docker:docker-compose.3.0.3
+    image: xiaobailong/hadoop_in_docker_single:3.0.3
     command: [
       "yarn",
       "nodemanager",

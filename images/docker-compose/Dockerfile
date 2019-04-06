@@ -11,8 +11,7 @@ COPY ./conf/* $HADOOP_HOME/etc/hadoop/
 
 # start hadoop
 RUN mkdir /data/hadoop/dfs/namenode/{data,cache} -p && chmod -R 700 /data/hadoop/dfs/namenode && \
-    mkdir -p /data/hadoop/dfs/datanode && chmod 700 /data/hadoop/dfs/datanode && \
-    hdfs namenode -format -clusterId $CLUSTER_ID
+    mkdir -p /data/hadoop/dfs/datanode && chmod 700 /data/hadoop/dfs/datanode
 
 #配置集群管理脚本
 RUN mkdir -p /scripts && chmod 777 /var/log/yum.log
