@@ -11,52 +11,52 @@
 
 进入docker-compose目录,使用以下命令启动集群
 
-`启动hdfs：
+启动hdfs：
 
-docker-compose -f docker-compose-hdfs.yml up -d
+`docker-compose -f docker-compose-hdfs.yml up -d`
 
 启动yarn集群：
 
-docker-compose -f docker-compose-yarn.yml up -d`
+`docker-compose -f docker-compose-yarn.yml up -d`
 
 ### 关闭
 
 在docker-compose目录中使用以下命令关闭集群
 
-`关闭yarn集群：
+关闭yarn集群：
 
-docker-compose -f docker-compose-yarn.yml down
+`docker-compose -f docker-compose-yarn.yml down`
 
 关闭hdfs集群：
 
-docker-compose -f docker-compose-hdfs.yml down`
+`docker-compose -f docker-compose-hdfs.yml down`
 
 ## kubernetes集群版
 
 ### 创建命名空间
 
-kubectl create namespace xiaobailong
+`kubectl create namespace xiaobailong`
 
 ### 启动
 
 进入kubernetes的相应子目录中使用以下命令启动集群
 
-`进入kubernetes\hdfs目录下，执行以下命令启动hdfs：
+进入kubernetes\hdfs目录下，执行以下命令启动hdfs：
 
-kubectl create -f .
+`kubectl create -f .`
 
 进入kubernetes\yarn目录下，执行以下命令启动yarn集群：
 
-kubectl create -f .`
+`kubectl create -f .`
 
 ### 关闭
 
 在kubernetes的相应子目录中使用以下命令关闭集群
 
-`进入kubernetes\yarn目录下，执行以下命令关闭yarn集群：
+进入kubernetes\yarn目录下，执行以下命令关闭yarn集群：
 
-kubectl delete -f .
+`kubectl delete -f .`
 
 进入kubernetes\hdfs目录下，执行以下命令关闭hdfs集群：
 
-kubectl delete -f .`
+`kubectl delete -f .`
