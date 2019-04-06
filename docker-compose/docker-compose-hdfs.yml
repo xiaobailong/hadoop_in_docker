@@ -25,7 +25,7 @@ services:
       "-Ddfs.datanode.data.dir=/data/hadoop/dfs/datanode",
       "-Ddfs.permissions.enabled=false"
     ]
-    hostname: datanode1
+    hostname: datanode0.hdfs-dn0.xiaobailong.svc.cluster.local
     networks:
       - ones_cloud
     expose:
@@ -44,7 +44,7 @@ services:
       "-Ddfs.datanode.data.dir=/data/hadoop/dfs/datanode",
       "-Ddfs.permissions.enabled=false"
     ]
-    hostname: datanode2
+    hostname: datanode1.hdfs-dn1.xiaobailong.svc.cluster.local
     networks:
       - ones_cloud
     expose:

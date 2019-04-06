@@ -32,7 +32,7 @@ services:
         "yarn",
         "timelineserver"
           ]
-    hostname: timelineserver
+    hostname: timelineserver.yarn-ts.xiaobailong.svc.cluster.local
     networks:
       - ones_cloud
     ports:
@@ -50,7 +50,7 @@ services:
         "-Dmapreduce.framework.name=yarn",
         "-Ddfs.permissions.enabled=false"
         ]
-    hostname: nodemanager0
+    hostname: nodemanager0.yarn-nm0.xiaobailong.svc.cluster.local
     networks:
       - ones_cloud
     expose:
@@ -74,7 +74,7 @@ services:
       "-Dmapreduce.framework.name=yarn",
       "-Ddfs.permissions.enabled=false"
     ]
-    hostname: nodemanager1
+    hostname: nodemanager1.yarn-nm1.xiaobailong.svc.cluster.local
     networks:
       - ones_cloud
     expose:
