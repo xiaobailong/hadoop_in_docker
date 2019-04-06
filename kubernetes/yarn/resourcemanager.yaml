@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: resourcemanager
-          image: xiaobailong/hadoop_in_docker:3.0.3
+          image: xiaobailong/hadoop_in_docker:kubernetes.3.0.3
           imagePullPolicy: Always
           command: ["yarn"]
           args: ["resourcemanager","-Dfs.defaultFS=hdfs://namenode.hdfs-nm.xiaobailong.svc.cluster.local:9000","-Dyarn.nodemanager.aux-services=mapreduce_shuffle","-Ddfs.namenode.datanode.registration.ip-hostname-check=false","-Ddfs.permissions.enabled=false -Dmapreduce.framework.name=yarn","-Dyarn.resourcemanager.webapp.address=resourcemanager.yarn-rm.xiaobailong.svc.cluster.local:8088"]
@@ -24,8 +24,6 @@ spec:
               protocol: TCP
       hostname: resourcemanager
       subdomain: yarn-rm
-      imagePullSecrets:
-        - name: regsecret
 
 ---
 apiVersion: v1
