@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: namenode
-          image: xiaobailong/hadoop_in_docker:kubernetes.3.0.3
+          image: xiaobailong/hadoop_in_docker_k8s:3.0.3
           imagePullPolicy: Always
           ports:
             - containerPort: 50070
